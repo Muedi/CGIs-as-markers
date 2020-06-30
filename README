@@ -1,0 +1,22 @@
+This is exemplary Code for the Paper: "CpG-Islands as markers for Liquid Biopsies of Cancer patients."
+
+The R code utilizes the comprehensive RnBeads package and one should be aquainted to the use of RnBeads. 
+They provide some tutorials on their site and have a very nice support :) 
+https://bioconductor.org/packages/release/bioc/html/RnBeads.html
+
+The R-scripts takes the data given as either idat raw files from Illumina Methylation Chips or GEO-series directly from the GEO base. 
+This was in our case depending on wether the files were accessible as raw data or as GEO-series.
+The data is then controlled for Quality and preprocessed with the functions of RnBeads. 
+RnBeads also provides the possiblity to combine different arrays to one dataset ommitting values, that are not present in all sets, which was used here.
+After that, the complete set is normalized. 
+
+The normalized data is dropped in the Output folder as a csv. 
+
+The Python scripts take the csv-file and read the meth values from them. 
+The PCA script just does the PCA and returns the respective figures. 
+The looped script loops over three feature selecteions used and does 10 iterations of fitting and tuning a random forest to newly selected features, 
+finally returning the mean of all given metrics and a sum of the selected features and mispredicted samples.
+
+More information can be found in the paper. 
+
+DOI will be added here :)
