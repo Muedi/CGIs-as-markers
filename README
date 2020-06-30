@@ -19,4 +19,7 @@ finally returning the mean of all given metrics and a sum of the selected featur
 
 More information can be found in the paper. 
 
+All machine learning functionalities are from the sci-kit learn library.
+https://scikit-learn.org/stable/index.html
+
 DOI will be added here :)
