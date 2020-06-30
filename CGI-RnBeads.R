@@ -10,7 +10,7 @@ library(stringr)
 library(minfi)
 
 
-#####Ghostscript environment
+#####Ghostscript and ZIP environment, see RnBeads documentation/FAQ
 Sys.setenv("R_GSCMD" = "C:/Program Files/gs/gs9.50/bin/gswin64c.exe")
 Sys.setenv("R_ZIPCMD" = "C:/RTools/bin/zip.exe")
 Sys.setenv("R_UNZIPCMD" = "C:/RTools/bin/unzip.exe")
@@ -32,13 +32,15 @@ rnb.options(identifiers.column="sample_Name",
 )
 
 #####setting up folders #####
-data.dir <- "C:/Users/Max/bioinfo/Methylation_python_ml/HCC"
+data.dir <- "C:/Users/User/project_folder"
 
-idat.dir <- file.path("C:/Users/Max/bioinfo/R_programming_master_thesis/idat")
-analysis.dir <- file.path(data.dir, "Analysis_HCC")
+idat.dir <- file.path("C:/Users/User/project_folder/idat")
+analysis.dir <- file.path(data.dir, "Analysis")
 save.dir <- file.path(data.dir, "saved_sets")
 
 # initialize Sampla annotations and data sources
+# the sample sheets need to be produced by you for the respective data you want to read in.
+# RnBeads provides an example on how to do that in the Documantation
 # PBMC
 sample.annotation.PBMC  <- file.path(data.dir, "Sample_sheet_PBMC.csv")
 # whole blood and cfDNA control
@@ -46,6 +48,7 @@ sample.annotation.whole_blood  <- file.path(data.dir, "Sample_sheet_wb.csv")
 sample.annotation.cfDNA_ctrl <- file.path(data.dir, "Sample_sheet_cf_moss.csv")
 # solid tumor
 sample.annotation.HCC_2 <- file.path(data.dir, "Sample_sheet_HCC_2.csv")
+
 # collects idats from idat-folder only needed for data which is present in idat format
 data.source.PBMC <- c(idat.dir, sample.annotation.PBMC)
 data.source.whole_blood <- c(idat.dir, sample.annotation.whole_blood)
@@ -61,7 +64,6 @@ report.dir.5 <- file.path(analysis.dir, "reports_details_5")
 report.dir.6 <- file.path(analysis.dir, "reports_details_6")
 report.dir.7 <- file.path(analysis.dir, "reports_details_7")
 report.dir.8 <- file.path(analysis.dir, "reports_details_8")
-
 
 ###### load data from idat: whole blood (healthy control) data from GEO ######
 rnb.initialize.reports(report.dir)
@@ -292,7 +294,7 @@ rnb.set.complete <- load.rnb.set(file.path(save.dir, "rnb.set.complete.zip"))
 # methylation level
 meth.vals <- meth(rnb.set.complete, row.names=TRUE)
 dimnames(meth.vals)[[2]] <- rnb.set.complete@pheno$sample_Name 
-write.table(meth.vals, file = "C:/Users/Max/bioinfo/Methylation_python_ml/HCC/Output_RnBeads/complete_HCC_sites_meth_new2.csv", quote = FALSE, sep = ",")
+write.table(meth.vals, file = "C:/Users/User/project_folder/Output_RnBeads/complete_HCC_sites_meth_new2.csv", quote = FALSE, sep = ",")
 
 # Annotation of islands, saving as mean meth of islands
 # RnBeads does not return the meth values with CGIs as index,
@@ -300,6 +302,6 @@ write.table(meth.vals, file = "C:/Users/Max/bioinfo/Methylation_python_ml/HCC/Ou
 # index = annotation
 # saving anno
 island_anno <- annotation(rnb.set.complete, type="cpgislands")
-write.table(island_anno, file = "C:/Users/Max/bioinfo/Methylation_python_ml/HCC/Output_RnBeads/complete_HCC_islands_anno_new2.csv", quote = FALSE, sep = ",")
+write.table(island_anno, file = "C:/Users/User/project_folder/Output_RnBeads/complete_HCC_islands_anno_new2.csv", quote = FALSE, sep = ",")
 # saving meth-values
-write.table(as.ffdf(rnb.set.complete@meth.regions$cpgislands), file ="C:/Users/Max/bioinfo/Methylation_python_ml/HCC/Output_RnBeads/complete_HCC_islands_meth_new2.csv", quote = FALSE, sep = ",")
+write.table(as.ffdf(rnb.set.complete@meth.regions$cpgislands), file ="C:/Users/User/project_folder/Output_RnBeads/complete_HCC_islands_meth_new2.csv", quote = FALSE, sep = ",")
