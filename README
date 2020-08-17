@@ -17,9 +17,9 @@ The PCA script just does the PCA and returns the respective figures.
 The looped script loops over three feature selecteions used and does 10 iterations of fitting and tuning a random forest to newly selected features, 
 finally returning the mean of all given metrics and a sum of the selected features and mispredicted samples.
 
-More information can be found in the paper. 
+More detailed information can be found in the paper. 
 
 All machine learning functionalities are from the sci-kit learn library.
 https://scikit-learn.org/stable/index.html
 
-DOI will be added here :)
+DOI: https://doi.org/10.3390/cells9081820
