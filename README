@@ -22,4 +22,6 @@ More detailed information can be found in the paper.
 All machine learning functionalities are from the sci-kit learn library.
 https://scikit-learn.org/stable/index.html
 
+
+Paper: "CpG-Islands as markers for Liquid Biopsies of Cancer patients.",
 DOI: https://doi.org/10.3390/cells9081820
