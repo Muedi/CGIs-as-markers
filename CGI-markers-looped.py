@@ -225,6 +225,8 @@ for selector in selectors:
     # Number of desired iterations
     for i in range(10):
         if complete_set:
+            seed = rd.randint(1,400)
+            random_state = rd.RandomState(seed)
             X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.4, random_state=random_state)
         else:
             X_train = X[[True if ("PBMC" in x or "carcinoma" in x or "HCC_" in x) else False for x in X.index]]
